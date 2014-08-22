@@ -533,22 +533,21 @@ table th {
     margin-bottom: 0;
     line-height: 1em;
 
-    @include animation-name(whoAreWe);
+    @include animation-name(introWhoAreWe);
 }
 #nav-wrapper {
-    @include animation-name(nav);
-    display: block;
+    #nav-story {
+        @include introAnim;
+        @include animation-name(introNavLeft);
+    }
+    #nav-music {
+        @include introAnim;
+        @include animation-name(introNavRight);
+    }
 }
-#nav-wrapper #nav-story {
-    @include introAnim;
-    @include animation-name(navLeft);
-}
-#nav-wrapper #nav-music {
-    @include introAnim;
-    @include animation-name(navRight);
-}
+
 .site-title a {
-    @include animation-name(title);
+    @include animation-name(introTitle);
 }
 
 #who-are-we.skip-anim,

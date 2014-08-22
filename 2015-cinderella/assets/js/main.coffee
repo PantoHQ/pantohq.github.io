@@ -17,10 +17,6 @@ $ ->
 		$(window).click ->
 			skipAnimations()
 
-		# Skip animations if one of our links sent the user here
-		if isInternalReferrer()
-			skipAnimations()
-
 	generalInit = ->
 		$('#nav-global li:has(ul)').doubleTapToGo()
 
@@ -46,5 +42,6 @@ $ ->
 	.data 'smoothState'
 
 	if isIntroPage()
+		console.log 'isIntro'
 		introPageInit()
 
