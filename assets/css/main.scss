@@ -1,0 +1,466 @@
+---
+---
+
+@import '2015-cinderella/reset';
+
+/**
+ * Now on with the show:
+ */
+
+/**
+ * Typography / colour
+ */
+body, p, ul, ol {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.7em;
+    font-weight: 400;
+    font-style: normal;
+    color: #424242;
+}
+p, ul, ol, table {
+    margin-bottom: 28px;
+}
+a {
+    text-decoration: none;
+    color: #0085bd;
+}
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.3em;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-weight: 700;
+    font-style: normal;
+    color: #212121;
+}
+h1 {
+    font-size: 24px;
+    a {
+        color: #212121; 
+    }
+}
+h1.title {
+    text-align: center;
+}
+h2 {
+    font-size: 20px;
+    color: #212121;
+    padding-bottom: 18px;
+}
+table th {
+    text-align: left;
+}
+#site #canvas #page-wrapper ul {
+    list-style: square inside none;
+}
+
+/**
+ * Utilities
+ */
+
+/**
+ * Clearfix
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+/** 
+ * Structure
+ */
+#site {
+    margin: 0 auto;
+    padding: 130px;
+
+    #canvas {
+        padding: 0;
+        max-width: 1100px;
+        margin: 0 auto;
+        min-height: 600px;
+
+        #header-wrapper {
+            padding-bottom: 80px;
+
+            #header {
+                max-width: 1100px;
+                padding: 0;
+                position: relative;
+                text-align: center;
+                width: 100%;
+                vertical-align: middle;
+            }
+
+            #header h1.site-title {
+                font-family: 'Montserrat', sans-serif;
+                // font-family: 'Stalemate', cursive;
+                line-height: 1em;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-style: normal;
+                font-size: 80px;
+                text-align: center;
+                display: block;
+                margin: 0 auto 28px;
+                color: #121212;
+                letter-spacing: 0.125em;
+
+                a {
+                    color: #121212;
+                }
+                a:hover {
+                    color: #c9c9c9;
+                }
+            }
+            #nav-global {
+                width: auto;
+                text-align: center;
+                padding: 28px 0;
+
+                ul {
+                    font-size: 13px;
+                    line-height: 1.5em;
+                    font-family: 'Open Sans', sans-serif;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    font-weight: 0;
+                    font-style: normal;
+                }
+
+                ul > li > a {
+                    padding: 0 0.8em;
+                }
+
+                ul > li {
+                    display: inline-block;
+                    text-align: center;
+                }
+                ul > li > ul {
+                    background-color: #fff;
+                    box-shadow: 0 0 50px #fff;
+                    text-transform: none;
+                    padding: 5px 0;
+                    line-height: 1.8em;
+                }
+                ul > li > ul > li {
+                    text-align: left;
+                    display: block;
+                    position: relative;
+
+                }
+                a,
+                a:visited {
+                    color: #666;
+                }
+                > ul > li a:hover,
+                > ul > li a:active,
+                > ul > li.active > a {
+                    color: #c9c9c9;
+                }
+                > ul > li > ul {
+                    width: auto;
+                }
+            }
+
+            /**
+             * Fancy navigation
+             */
+            #nav-global {
+                position: relative;
+                left: -30px;
+
+                > a {
+                    display: none;
+                }
+
+                li {
+                    position: relative;
+
+                    &.divider {
+                        height: 20px;
+                    }
+
+                    ul {
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        z-index: 1;
+                    }
+                    
+                    ul.characters {
+                        width: 100%;
+
+                        li {
+                            text-align: right;
+                        }
+                    }
+                    &:hover ul {
+                        display: block;
+                    }
+                }
+
+                > ul {}
+                > ul > li {}
+            }
+
+            &.nav-show-all #nav-global {
+                left: -90px;
+                height: 500px;
+
+                > ul > li {
+                    font-style: bold;
+                    padding-bottom: 30px;
+
+                    > a {
+                        color: #212121;
+                    }
+                }
+
+                li ul {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+
+
+        #page-wrapper {
+            .byline {
+                display: block;
+                margin-bottom: 28px;
+                text-align: center;
+                line-height: 1.6em;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 13px;
+                color: #4a4a4a;
+            }
+            article {
+                position: relative;
+                max-width: 750px;
+                margin: 0 auto;
+
+                header {
+                    margin: 0 0 80px;
+
+                    .character-name {
+                        font-family: 'Stalemate', cursive;
+                        font-size: 70px;
+                    }
+                    .byline,
+                    .character-description {
+                        font-size: 14px;
+                    }
+                    .byline .character {
+                        font-family: 'Stalemate', cursive;
+                        font-size: 30px;
+                        text-transform: none;
+                    }
+                    .character-description {
+                        // font-family: 'Shadows Into Light', cursive;
+                        // font-family: 'Stalemate', cursive;
+                        margin: 0 auto;
+                        text-align: center;
+                        font-weight: 400;
+                        // font-size: 30px;
+                    }
+                }
+            }
+
+            .song-status {
+                .red,
+                .amber,
+                .green {
+                    padding: 0 10px;
+                }
+                .red {
+                    background-color: #e00;
+                    color: #500;
+                    border-color: #a00;
+                }
+                .amber {
+                    background-color: #fa0;
+                    color: #830;
+                    border-color: #a50;
+                }
+                .green {
+                    background-color: #0d0;
+                    color: #060;
+                    border-color: #080;
+                }
+            }
+
+            ul.song-status {
+                list-style: none;
+                margin: 0;
+                margin-bottom: 10px;
+                padding: 0;
+                padding-bottom: 30px;
+                width: auto;
+                text-align: center;
+
+                li.red,
+                li.amber,
+                li.green {
+                    display: block;
+                    text-align: center;
+                    margin-bottom: 0px;
+                    line-height: 1em;
+                    padding: 7px 10px;
+                }
+            }
+
+            table.song-status {
+                td.red,
+                td.amber,
+                td.green {
+                    text-align: center;
+                    margin-bottom: 0px;
+                    line-height: 1em;
+                    padding: 7px 10px;
+                }
+            }
+
+            .resources {
+                width: 100%;
+                margin: 0 auto;
+                // max-width: 400px;
+
+                th {
+                    border-bottom: 1px solid #eee;
+                }
+                .disabled {
+                    opacity: 0.5;
+                }
+            }
+
+            .container {
+                margin-bottom: 28px;
+                clear: left;
+
+                .left {
+                    float: left;
+                    width: 200px;
+
+                    h2 {
+                        text-align: right;
+                        padding-right: 10px;
+                    }   
+                }
+
+                .right {
+                    overflow: hidden;
+                }
+
+                .right-inner {
+                    padding-left: 20px;
+                }
+            }
+
+            .note {
+                font-family: 'Shadows Into Light', cursive;
+            }
+        }
+
+        #footer-wrapper {}
+    }
+}
+
+
+@media only screen and (max-width: 1024px) {
+    #site #canvas {
+        #header-wrapper {
+            padding-bottom: 28px !important;
+        }
+        #page-wrapper article header {
+            margin: 0 0 38px;
+        }
+    }
+}
+@media only screen and (max-width: 960px) {
+    #site {
+        overflow: hidden;
+        padding: 50px;
+    }
+}
+@media only screen and (max-width: 40em) {
+    #site #canvas #page-wrapper {
+        .container {
+            .left {
+                float: left;
+                width: 100%;
+
+                .left h2 {
+                    text-align: left;
+                }
+            }
+            .right {
+                width: 100%;
+                float: left;
+            }
+            .right-inner {
+                padding-left: 0px;
+            }
+        }
+        
+        ul.song-status li {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 6px;
+        }
+        
+    }
+}
+
+/*
+@media only screen and (max-width: 40em) {
+    #site #canvas #header-wrapper #nav-global {
+        position: relative;
+    }
+    #site #canvas #header-wrapper #nav-global > a {}
+    #site #canvas #header-wrapper #nav-global:not( :target ) > a:first-of-type,
+    #site #canvas #header-wrapper #nav-global:target > a:last-of-type {
+        display: block;
+    }
+    #site #canvas #header-wrapper #nav-global > ul {
+        height: auto;
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+    #site #canvas #header-wrapper #nav-global:target > ul {
+        display: block;
+    }
+    #site #canvas #header-wrapper #nav-global > ul > li {
+        width: 100%;
+        float: none;
+    }
+    #site #canvas #header-wrapper #nav-global li ul {
+        position: static;
+    }
+}
+*/
