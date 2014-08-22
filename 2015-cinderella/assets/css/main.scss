@@ -5,9 +5,9 @@
 @import '2015-cinderella/mixins';
 @import '2015-cinderella/clearfix';
 
-/**
- * Now on with the show:
- */
+html {
+    overflow-y: scroll;
+}
 
 /**
  * Typography / colour
