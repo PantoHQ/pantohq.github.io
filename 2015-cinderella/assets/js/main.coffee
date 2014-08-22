@@ -4,44 +4,67 @@
 $ ->
 	'use strict'
 
-	isInternalReferrer = ->
-		document.referrer.indexOf(location.protocol + "//" + location.host) == 0;
-
 	skipAnimations = ->
 		$('.anim, #nav-music, #nav-story').addClass 'skip-anim'
 
-	isIntroPage = (url = $('base').attr 'href') ->
-		return document.location.pathname.toLowerCase() == url or document.location.toString() == url
-
-	introPageInit = ->
+	introPageSetUp = ->
 		$(window).click ->
 			skipAnimations()
 
-	generalInit = ->
+	introPageTearDown = ->
+		$(window).unbind 'click'
+
+	generalSetUp = ->
 		$('#nav-global li:has(ul)').doubleTapToGo()
 
-	generalInit()
+	prevUrl        = document.location.toString()
+	rootPath       = $('base').attr 'href'
+	rootUrl        = document.location.protocol + '//' + document.location.host + rootPath
+	$body          = $('html, body')
+	$site          = $('#site')
 
-	$body   = $('html, body')
-	$header = $('article header')
-	$body   = $('article .body')
-	content = $('#canvas').smoothState
+	# Since subsequent pages are loaded with AJAX (thanks to jquery.smoothStage.js)
+	# we only need to check the document.location once
+	generalSetUp()
+	if document.location.toString() == rootUrl
+		introPageSetUp()
+	
+	content = $site.smoothState
 		prefetch: true
 		pageCacheSize: 4
 		onStart:
-			duration: 0
-			render: ->
-				content.toggleAnimationClass 'is-exiting'
+			duration: 250
+			render: (url, $container) ->
+				$site.removeClass 'not-from-intro from-intro to-intro not-to-intro not-from-page'
+				$site.addClass 'from-page'
+				$('#canvas').addClass 'exiting' 
+
+				if prevUrl == rootUrl
+					$site.addClass 'from-intro'
+					introPageTearDown()
+				else
+					$site.addClass 'not-from-intro'
+
+				if url == rootUrl
+					$site.addClass 'to-intro'
+				else
+					$site.addClass 'not-to-intro'
+
 				$body.animate
 					scrollTop: 0
+		onEnd:
+			duration: 0,
+			render: (url, $container, $content) ->
+				$site.removeClass 'intro to-intro not-to-intro'
+				if url == rootUrl
+					$site.addClass 'intro'
+				$container.html($content)
+					
 		callback: (url, $container, $content) ->
-			if isIntroPage(url)
+			generalSetUp()
+			if url == rootUrl
+				introPageSetUp()
 				skipAnimations()
-			generalInit()
-
+			prevUrl = url
 	.data 'smoothState'
-
-	if isIntroPage()
-		console.log 'isIntro'
-		introPageInit()
 

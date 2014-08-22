@@ -77,8 +77,166 @@ table th {
     }
 }
 
+@include keyframes(exitingIntroCanvas) {
+    20% {
+        @include transform(none);
+    }
+
+    100% {
+        @include transform(translate3d(0,-80px,0));
+    }
+}
+@include keyframes(exitingIntroWhoAreWe) {
+    0% {
+        opacity: 1;
+        @include transform(none);
+    }
+    20% {
+        opacity: 0;
+        @include transform(none);
+    }
+    100% {
+        opacity: 0;
+        @include transform(translate3d(0,80px,0));
+    }
+}
+@include keyframes(exitingIntroNav) {
+    20% {
+        @include transform(none);
+    }
+
+    100% {
+        @include transform(translate3d(60px,0,0));
+    }
+}
+@include keyframes(exitingIntroNavBody) {
+    0% {
+        opacity: 1;
+        @include transform(none);
+    }
+
+    20% {
+        opacity: 0;
+        @include transform(translate3d(0,10px,0));
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@include keyframes(enteringIntroCanvas) {
+    0% {
+        @include transform(translate3d(0,-80px,0));
+    }
+    80% {
+        @include transform(translate3d(0,0px,0));
+    }
+}
+@include keyframes(enteringIntroWhoAreWe) {
+    0% {
+        opacity: 0;
+        @include transform(translate3d(0,80px,0));
+    }
+    80% {
+        opacity: 0;
+        @include transform(translate3d(0,0px,0));
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@include keyframes(enteringIntroNav) {
+    0% {
+        @include transform(none);
+    }
+
+    100% {
+        @include transform(translate3d(-60px,0,0));
+    }
+}
+@include keyframes(enteringIntroContent) {
+    0% {
+        opacity: 1;
+        @include transform(none);
+    }
+
+    100% {
+        opacity: 0;
+        @include transform(translate3d(0,-10px,0));
+    }
+}
+@include keyframes(enteredIntroNavBody) {
+    0% {
+        opacity: 0;
+        @include transform(translate3d(0,-10px,0));
+    }
+
+    10% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+
 @mixin anim {
     @include animation-duration(0.25s);
+    @include transition-timing-function(ease-in);
+    @include animation-fill-mode(both);
+}
+
+
+@include keyframes(introTitle) {
+    0% {
+        opacity: 0;
+        @include transform(scale(0,0));
+    }
+
+    20% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+@include keyframes(introWhoAreWe) {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+}
+@include keyframes(introNavLeft) {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+        @include transform(translate3d(0,-50px,0));
+    }
+
+    70% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+@include keyframes(introNavRight) {
+    0% {
+        opacity: 0;
+    }
+    45% {
+        opacity: 0;
+        @include transform(translate3d(0,-50px,0));
+    }
+
+    75% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+
+@mixin introAnim {
+    @include animation-duration(4s);
     @include transition-timing-function(ease-in);
     @include animation-fill-mode(both);
 }
@@ -89,6 +247,118 @@ table th {
 #site {
     margin: 0 auto;
     padding: 130px;
+
+    .anim {
+        @include introAnim;
+    }
+
+    #who-are-we {
+        font-family: 'Stalemate', cursive;
+        font-size: 80px; text-align:center;
+        margin-bottom: 0;
+        line-height: 1em;
+        display: none;
+    }
+
+    &.intro {
+        #canvas #who-are-we {
+            display: block;
+        }
+
+        &.not-from-page #canvas {
+            // First time intro animations
+            #who-are-we {
+                @include animation-name(introWhoAreWe);
+            }
+            #nav-wrapper {
+                #nav-story {
+                    @include introAnim;
+                    @include animation-name(introNavLeft);
+                }
+                #nav-music {
+                    @include introAnim;
+                    @include animation-name(introNavRight);
+                }
+            }
+            .site-title a {
+                @include animation-name(introTitle);
+            }
+
+            // This class is used by JS to kill the intro animations
+            #who-are-we.skip-anim,
+            #nav-wrapper.skip-anim,
+            #nav-wrapper #nav-story.skip-anim,
+            #nav-wrapper #nav-music.skip-anim,
+            .site-title a.skip-anim {
+                @include animation(instant-in 1ms ease-out);
+                @include animation-fill-mode(forwards);
+            }
+        }
+
+        &.from-page #canvas {
+            #nav-wrapper {
+                ul li ul {
+                    @include introAnim;
+                    @include animation-name(enteredIntroNavBody);
+                }
+            }
+        }
+    }
+
+    &.from-intro.not-to-intro #canvas {
+        // When exiting the intro page to any other page
+        @include anim;
+        @include animation-name(exitingIntroCanvas);
+
+        #who-are-we {
+            @include anim;
+            @include animation-name(exitingIntroWhoAreWe);
+        }
+
+        #nav-global {
+            @include anim;
+            @include animation-name(exitingIntroNav);
+
+            ul li ul {
+                @include anim;
+                @include animation-name(exitingIntroNavBody);
+            }
+        }
+    }
+
+    // When exiting a normal page to visit the intro page again
+    &.to-intro.not-from-intro #canvas {
+        @include anim;
+        @include animation-name(enteringIntroCanvas);
+
+        #who-are-we {
+            display: block;
+            @include anim;
+            @include animation-name(enteringIntroWhoAreWe);
+        }
+
+        #nav-global {
+            @include anim;
+            @include animation-name(enteringIntroNav);
+        }
+
+        #page-wrapper,
+        #footer-wrapper {
+            @include anim;
+            @include animation-name(enteringIntroContent);
+        }
+    }
+
+    #canvas.exiting {
+        #page-wrapper {
+            article {
+                header,
+                .body {
+                    @include animation-direction(alternate-reverse);
+                }
+            }
+        }
+    }
 
     #canvas {
         padding: 0;
@@ -124,6 +394,8 @@ table th {
 
                 a {
                     color: #121212;
+
+                    -webkit-transition: padding 2s;
                 }
                 a:hover {
                     color: #c9c9c9;
@@ -236,17 +508,6 @@ table th {
                 li ul {
                     display: block;
                     width: 100%;
-                }
-            }
-        }
-
-        &.is-exiting {
-            #page-wrapper {
-                article {
-                    header,
-                    .body {
-                        @include animation-direction(alternate-reverse);
-                    }
                 }
             }
         }
@@ -462,102 +723,6 @@ table th {
 }
 
 
-// Index Page Fancy Animations
-
-@include keyframes(introTitle) {
-    0% {
-        opacity: 0;
-        @include transform(scale(0,0));
-    }
-
-    20% {
-        opacity: 1;
-        @include transform(none);
-    }
-}
-
-@include keyframes(introWhoAreWe) {
-    0% {
-        opacity: 0;
-    }
-    20% {
-        opacity: 0;
-    }
-    80% {
-        opacity: 1;
-    }
-}
-
-@include keyframes(introNavLeft) {
-    0% {
-        opacity: 0;
-    }
-    40% {
-        opacity: 0;
-        @include transform(translate3d(0,-50px,0));
-    }
-
-    70% {
-        opacity: 1;
-        @include transform(none);
-    }
-}
-@include keyframes(introNavRight) {
-    0% {
-        opacity: 0;
-    }
-    45% {
-        opacity: 0;
-        @include transform(translate3d(0,-50px,0));
-    }
-
-    75% {
-        opacity: 1;
-        @include transform(none);
-    }
-}
-
-@mixin introAnim {
-    @include animation-duration(4s);
-    @include transition-timing-function(ease-in);
-    @include animation-fill-mode(both);
-}
-
-.anim {
-    @include introAnim;
-}
-
-#who-are-we {
-    font-family: 'Stalemate', cursive;
-    font-size: 80px; text-align:center;
-    margin-bottom: 0;
-    line-height: 1em;
-
-    @include animation-name(introWhoAreWe);
-}
-#nav-wrapper {
-    #nav-story {
-        @include introAnim;
-        @include animation-name(introNavLeft);
-    }
-    #nav-music {
-        @include introAnim;
-        @include animation-name(introNavRight);
-    }
-}
-
-.site-title a {
-    @include animation-name(introTitle);
-}
-
-#who-are-we.skip-anim,
-#nav-wrapper.skip-anim,
-#nav-wrapper #nav-story.skip-anim,
-#nav-wrapper #nav-music.skip-anim,
-.site-title a.skip-anim {
-    @include animation(instant-in 1ms ease-out);
-    @include animation-fill-mode(forwards);
-}
 
 /*
 @media only screen and (max-width: 40em) {
