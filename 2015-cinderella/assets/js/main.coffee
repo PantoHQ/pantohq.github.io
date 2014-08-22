@@ -14,9 +14,6 @@ $ ->
 	introPageTearDown = ->
 		$(window).unbind 'click'
 
-	generalSetUp = ->
-		$('#nav-global li:has(ul)').doubleTapToGo()
-
 	prevUrl        = document.location.toString()
 	rootPath       = $('base').attr 'href'
 	rootUrl        = document.location.protocol + '//' + document.location.host + rootPath
@@ -25,7 +22,6 @@ $ ->
 
 	# Since subsequent pages are loaded with AJAX (thanks to jquery.smoothStage.js)
 	# we only need to check the document.location once
-	generalSetUp()
 	if document.location.toString() == rootUrl
 		introPageSetUp()
 	
@@ -61,7 +57,6 @@ $ ->
 				$container.html($content)
 					
 		callback: (url, $container, $content) ->
-			generalSetUp()
 			if url == rootUrl
 				introPageSetUp()
 				skipAnimations()
