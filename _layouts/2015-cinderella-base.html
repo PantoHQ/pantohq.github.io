@@ -11,9 +11,6 @@
 
         <!-- Style -->
         <link rel="stylesheet" href="assets/css/main.css">
-        {% for css_url in page.extra_css %}
-            <link rel="stylesheet" href="{{ css_url }}">
-        {% endfor %}
 
         <!-- Fonts -->
         <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -53,8 +50,5 @@
     <script src="assets/js/lib/doubletaptogo.min.js"></script>
     <script src="assets/js/lib/jquery.smoothState.js"></script>
     <script src="assets/js/main.js"></script>
-    {% for js_url in page.extra_js %}
-        <script src="{{ js_url }}"></script>
-    {% endfor %}
 
 </html>
