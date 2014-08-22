@@ -1,0 +1,100 @@
+---
+---
+
+@import '2015-cinderella/mixins';
+
+@include keyframes(title) {
+    0% {
+        opacity: 0;
+        @include transform(scale(0,0));
+    }
+
+    20% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+
+@include keyframes(whoAreWe) {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+}
+
+@include keyframes(navLeft) {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+        @include transform(translate3d(0,-50px,0));
+    }
+
+    70% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+@include keyframes(navRight) {
+    0% {
+        opacity: 0;
+    }
+    45% {
+        opacity: 0;
+        @include transform(translate3d(0,-50px,0));
+    }
+
+    75% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+
+@mixin indexAnim {
+    @include animation-duration(4s);
+    @include transition-timing-function(ease-in);
+    @include animation-fill-mode(both);
+}
+
+.anim {
+    @include indexAnim;
+}
+
+#who-are-we {
+    font-family: 'Stalemate', cursive;
+    font-size: 80px; text-align:center;
+    margin-bottom: 0;
+    line-height: 1em;
+
+    @include animation-name(whoAreWe);
+}
+#nav-wrapper {
+    @include animation-name(nav);
+    display: block;
+}
+#nav-wrapper #nav-story {
+    @include indexAnim;
+    @include animation-name(navLeft);
+}
+#nav-wrapper #nav-music {
+    @include indexAnim;
+    @include animation-name(navRight);
+}
+.site-title a {
+    @include animation-name(title);
+}
+
+#who-are-we.skip-anim,
+#nav-wrapper.skip-anim,
+#nav-wrapper #nav-story.skip-anim,
+#nav-wrapper #nav-music.skip-anim,
+.site-title a.skip-anim {
+    @include animation(instant-in 1ms ease-out);
+    @include animation-fill-mode(forwards);
+}

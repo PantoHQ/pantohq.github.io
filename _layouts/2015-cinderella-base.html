@@ -7,16 +7,19 @@
         <meta name="author" content="Marcus Whybrow">
         <link rel="author" href="https://plus.google.com/103832793361409130288/posts">
 
+        <base href="/2015-cinderella/">
+
         <!-- Style -->
         <link rel="stylesheet" href="assets/css/main.css">
+        {% for css_url in page.extra_css %}
+            <link rel="stylesheet" href="{{ css_url }}">
+        {% endfor %}
 
         <!-- Fonts -->
         <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Stalemate' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
-
-        <base href="/2015-cinderella/">
 
         
         <!--[if lt IE 9]>
@@ -46,10 +49,12 @@
     </body>
 
     <!-- jQuery -->
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="assets/js/lib/doubletaptogo.min.js"></script>
-    <script type="text/javascript">
-        $('#nav-global li:has(ul)').doubleTapToGo();
-    </script>
+    <script src="assets/js/lib/jquery.smoothState.js"></script>
+    <script src="assets/js/main.js"></script>
+    {% for js_url in page.extra_js %}
+        <script src="{{ js_url }}"></script>
+    {% endfor %}
 
 </html>

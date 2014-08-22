@@ -2,6 +2,8 @@
 ---
 
 @import '2015-cinderella/reset';
+@import '2015-cinderella/mixins';
+@import '2015-cinderella/clearfix';
 
 /**
  * Now on with the show:
@@ -54,37 +56,31 @@ table th {
     list-style: square inside none;
 }
 
-/**
- * Utilities
- */
-
-/**
- * Clearfix
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    contenteditable attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that are clearfixed.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-.cf:before,
-.cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+@include keyframes(articleHeader) {
+    0% {
+        opacity: 0;
+        @include transform(translate3d(0,10px,0));
+    }
+    80% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+@include keyframes(articleBody) {
+    20% {
+        opacity: 0;
+        @include transform(translate3d(0,10px,0));
+    }
+    100% {
+        opacity: 1;
+        @include transform(none);
+    }
 }
 
-.cf:after {
-    clear: both;
-}
-
-/**
- * For IE 6/7 only
- * Include this rule to trigger hasLayout and contain floats.
- */
-.cf {
-    *zoom: 1;
+@mixin anim {
+    @include animation-duration(0.25s);
+    @include transition-timing-function(ease-in);
+    @include animation-fill-mode(both);
 }
 
 /** 
@@ -244,6 +240,16 @@ table th {
             }
         }
 
+        &.is-exiting {
+            #page-wrapper {
+                article {
+                    header,
+                    .body {
+                        @include animation-direction(alternate-reverse);
+                    }
+                }
+            }
+        }
 
         #page-wrapper {
             .byline {
@@ -287,6 +293,14 @@ table th {
                         font-weight: 400;
                         // font-size: 30px;
                     }
+
+                    @include anim;
+                    @include animation-name(articleHeader);
+                }
+
+                .body {
+                    @include anim;
+                    @include animation-name(articleBody);
                 }
             }
 
@@ -385,6 +399,18 @@ table th {
             }
         }
 
+        // &.is-exiting {
+        //     #page-wrapper {
+        //         article {
+        //             @include animation-name(articleHeaderReverse);
+
+        //             .body {
+        //                 @include animation-name(articleBodyReverse);
+        //             }
+        //         }
+        //     }
+        // }
+
         #footer-wrapper {}
     }
 }
@@ -433,6 +459,105 @@ table th {
         }
         
     }
+}
+
+
+// Index Page Fancy Animations
+
+@include keyframes(introTitle) {
+    0% {
+        opacity: 0;
+        @include transform(scale(0,0));
+    }
+
+    20% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+
+@include keyframes(introWhoAreWe) {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+}
+
+@include keyframes(introNavLeft) {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+        @include transform(translate3d(0,-50px,0));
+    }
+
+    70% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+@include keyframes(introNavRight) {
+    0% {
+        opacity: 0;
+    }
+    45% {
+        opacity: 0;
+        @include transform(translate3d(0,-50px,0));
+    }
+
+    75% {
+        opacity: 1;
+        @include transform(none);
+    }
+}
+
+@mixin introAnim {
+    @include animation-duration(4s);
+    @include transition-timing-function(ease-in);
+    @include animation-fill-mode(both);
+}
+
+.anim {
+    @include introAnim;
+}
+
+#who-are-we {
+    font-family: 'Stalemate', cursive;
+    font-size: 80px; text-align:center;
+    margin-bottom: 0;
+    line-height: 1em;
+
+    @include animation-name(whoAreWe);
+}
+#nav-wrapper {
+    @include animation-name(nav);
+    display: block;
+}
+#nav-wrapper #nav-story {
+    @include introAnim;
+    @include animation-name(navLeft);
+}
+#nav-wrapper #nav-music {
+    @include introAnim;
+    @include animation-name(navRight);
+}
+.site-title a {
+    @include animation-name(title);
+}
+
+#who-are-we.skip-anim,
+#nav-wrapper.skip-anim,
+#nav-wrapper #nav-story.skip-anim,
+#nav-wrapper #nav-music.skip-anim,
+.site-title a.skip-anim {
+    @include animation(instant-in 1ms ease-out);
+    @include animation-fill-mode(forwards);
 }
 
 /*

@@ -3,7 +3,7 @@
     <a href="#" title="Hide navigation">Hide navigation</a>
 
     <ul>
-        <li class="{% if page.active-characters %}active{% endif %}" style="width: 120px; text-align: right">
+        <li id="nav-story" class="{% if page.active-characters %}active{% endif %}" style="width: 120px; text-align: right">
             <a href="{{ page.root }}story/" aria-haspopup="true">Story</a>
             <ul class="characters">
                 <li><a href="{{ page.root }}characters/charming/">Charming</a></li>
@@ -24,7 +24,7 @@
                 <li><a href="{{ page.root }}characters/general/">General</a></li>
             </ul>
         </li>
-        <li class="{% if page.active-songs %}active{% endif %}">
+        <li id="nav-music" class="{% if page.active-songs %}active{% endif %}">
             <a href="{{ page.root }}songs/" aria-haspopup="true">Music</a>
             <ul class="music" style="width: 400px">
                 <li><a href="{{ page.root }}songs/on-a-wonderful-day-like-today/">On A Wonderful Day Like Today</a></li>

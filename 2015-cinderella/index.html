@@ -2,38 +2,23 @@
 layout: 2015-cinderella-base
 active-home: true
 alias: index.html
+extra_css: assets/css/index.css
+extra_js: assets/js/index.js
 ---
-
-<style type="text/css">
-    #who-are-we {
-        font-family: 'Stalemate', cursive;
-        font-size: 80px; text-align:center;
-        margin-bottom: 0;
-        line-height: 1em;
-    }
-    #presents {
-        font-family: 'Open Sans', sans-serif;
-        text-transform: uppercase;
-        margin-bottom: 100px;
-    }
-    #call-to-action {
-        font-family: 'Shadows Into Light', cursive;
-        text-align:center;
-        font-size: 20px
-    }
-</style>
 
 <div id="header-wrapper" class="nav-show-all">
     <div id="header">
-        <p id="who-are-we">Lowdham Pantomime Group</p>
+        <p id="who-are-we" class="anim anim-fadein">Lowdham Pantomime Group</p>
         <!-- <p id="presents">presents</p> -->
         <h1 class="site-title">
-            <a href="{{ page.root }}">Cinderella</a>
+            <a href="{{ page.root }}" class="anim anim-fadeindown">Cinderella</a>
         </h1>
         <!-- <p id="call-to-action">Welcome to the resource pack! Go invesitage:</p> -->
     </div>
 
-    {% include 2015-cinderella/nav.html %}
+    <div id="nav-wrapper" class="anim">
+        {% include 2015-cinderella/nav.html %}
+    </div>
 </div>
 <div id="page-wrapper">
     {{ content }}
