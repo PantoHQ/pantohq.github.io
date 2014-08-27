@@ -7,6 +7,12 @@ $ ->
 	skipAnimations = ->
 		$('.anim, #nav-music, #nav-story').addClass 'skip-anim'
 
+	pageSetUp = ->
+		$title.fitText 1, 
+			maxFontSize: '80px'
+		$whoAreWe.fitText 1, 
+			maxFontSize: '80px'
+
 	introPageSetUp = ->
 		$(window).click ->
 			skipAnimations()
@@ -19,11 +25,61 @@ $ ->
 	rootUrl        = document.location.protocol + '//' + document.location.host + rootPath
 	$body          = $('html, body')
 	$site          = $('#site')
+	$window        = $(window)
+	$headerBg      = $('#header-bg')
+	$title         = $('#title')
+	$whoAreWe      = $('#who-are-we')
+	$canvas        = $('#canvas')
 
 	# Since subsequent pages are loaded with AJAX (thanks to jquery.smoothStage.js)
 	# we only need to check the document.location once
 	if document.location.toString() == rootUrl
 		introPageSetUp()
+
+	introTitleFadeStart = 300
+	introTitleFadeDist = 100
+
+	titleFadeStart = 140
+	titleFadeDist = 30
+
+	whoAreWeFadeStart = 10
+	whoAreWeFadeDist = 100
+
+	getBgPos = (scrollTop, offset) ->
+		parseInt(scrollTop / 5)
+
+	recalcHeader = ->
+		x = $window.scrollTop()
+		bgPos = getBgPos(x)
+
+		$headerBg.css 'background-position', 'center ' + bgPos + 'px'
+		$title.css 'top', parseInt(x/2) + 'px'
+
+		if $canvas.hasClass 'small-header'
+			if x < titleFadeStart
+				$title.css 'opacity', 1
+			if x >= titleFadeStart and x <= titleFadeStart + titleFadeDist
+				$title.css 'opacity', 1 - ((x - titleFadeStart) / titleFadeDist)
+			if x > titleFadeStart + titleFadeDist
+				$title.css 'opacity', 0
+		else
+			if x < introTitleFadeStart
+				$title.css 'opacity', 1
+			if x >= introTitleFadeStart and x <= introTitleFadeStart + introTitleFadeDist
+				$title.css 'opacity', 1 - ((x - introTitleFadeStart) / introTitleFadeDist)
+			if x > introTitleFadeStart + introTitleFadeDist
+				$title.css 'opacity', 0
+
+		x = $window.scrollTop()
+		if x < whoAreWeFadeStart
+			$whoAreWe.css 'opacity', 1
+		if x >= whoAreWeFadeStart and x <= whoAreWeFadeStart + whoAreWeFadeDist
+			$whoAreWe.css 'opacity', 1 - ((x - whoAreWeFadeStart) / whoAreWeFadeDist)
+		if x > whoAreWeFadeStart + whoAreWeFadeDist
+			$whoAreWe.css 'opacity', 0
+
+
+	$window.scroll recalcHeader
 	
 	content = $site.smoothState
 		prefetch: true
@@ -55,11 +111,23 @@ $ ->
 				if url == rootUrl
 					$site.addClass 'intro'
 				$container.html($content)
+				$headerBg = $('#header-bg')
+				$title    = $('#title')
+				$canvas   = $('#canvas')
+				$whoAreWe = $('#who-are-we')
+
+				# Ensure background position matches what currently exists
+				$headerBg.css 'background-position', 'center ' + getBgPos($window.scrollTop()) + 'px'
 					
 		callback: (url, $container, $content) ->
 			if url == rootUrl
 				introPageSetUp()
 				skipAnimations()
+			pageSetUp()
+			recalcHeader()
 			prevUrl = url
 	.data 'smoothState'
+
+	pageSetUp()
+
 

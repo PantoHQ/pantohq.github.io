@@ -37,7 +37,7 @@
 
     <body class="style-thin panto">  
         <div id="site" class="{{ page.site_class }}">
-            <div id="canvas" class="entering">
+            <div id="canvas" class="entering {{ page.canvas_class }}">
 {{ content }}
             </div>
 
@@ -46,6 +46,7 @@
     
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="assets/js/lib/jquery.smoothState.js"></script>
+    <script src="assets/js/lib/jquery.fittext.js"></script>
     <script src="assets/js/main.js"></script>
 
 </html>
