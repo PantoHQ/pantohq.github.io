@@ -368,7 +368,8 @@ table th {
                 }
             }
 
-            .song-status {
+            .song-status,
+            .colour-blocks {
                 .red,
                 .amber,
                 .green {
@@ -391,7 +392,8 @@ table th {
                 }
             }
 
-            ul.song-status {
+            ul.song-status,
+            ul.colour-blocks {
                 list-style: none;
                 margin: 0;
                 margin-bottom: 10px;
@@ -411,7 +413,8 @@ table th {
                 }
             }
 
-            table.song-status {
+            table.song-status,
+            table.colour-blocks {
                 td.red,
                 td.amber,
                 td.green {
@@ -439,6 +442,10 @@ table th {
                 margin-bottom: 28px;
                 clear: left;
 
+                &+h2 {
+                    clear: left;
+                }
+
                 .left {
                     float: left;
                     width: 200px;
@@ -455,6 +462,12 @@ table th {
 
                 .right-inner {
                     padding-left: 20px;
+                    position: relative;
+                    top: -5px;
+
+                    p:last-child {
+                        margin-bottom: 0;
+                    }
                 }
             }
 
@@ -518,7 +531,8 @@ table th {
             }
         }
         
-        ul.song-status li {
+        ul.song-status li,
+        ul.colour-blocks li {
             display: inline-block;
             margin-right: 5px;
             margin-bottom: 6px;
