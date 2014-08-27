@@ -102,7 +102,7 @@ table th {
                 bottom: 0;
 
                 background: url('https://s3-eu-west-1.amazonaws.com/pantohq/2015-cinderella/img/bg/castle.jpg') no-repeat center 0px;
-                -webkit-background-size: cover;
+                @include background-size(cover);
 
                 z-index: 0;
 

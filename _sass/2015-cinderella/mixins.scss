@@ -31,6 +31,12 @@
          -o-animation-direciton: $direciton;
             animation-direciton: $direciton;
 }
+@mixin background-size($size) {
+    -webkit-background-size: $size;
+       -moz-background-size: $size;
+         -o-background-size: $size;
+            background-size: $size;
+}
 @mixin keyframes($name) {
     @-webkit-keyframes #{$name} {
         @content
