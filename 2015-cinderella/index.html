@@ -6,6 +6,107 @@ site_class: intro not-from-page
 title: Cinderella
 ---
 
+<style type="text/css">
+    #site #canvas #header-wrapper {
+        height: 588px;
+        padding-bottom: 0;
+    }
+    #audition-date {
+        /*border-top: 5px dashed #eee;
+        border-bottom: 5px dashed #eee;*/
+        padding: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        padding-bottom: 0;
+    }
+    #audition-location {
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+
+    #listen {
+        margin-top: 60px;
+        margin-bottom: 100px;
+    }
+    #listen h3 {
+        margin-bottom: 10px;
+    }
+    #listen .desc {
+        /*height: 130px;*/
+        margin-bottom: 20px;
+    }
+    #listen #listen-original {
+        float: left;
+        width: 33.33%; width: calc(100%/3);
+        margin-bottom: 20px;
+    }
+    #listen #listen-guide {
+        float: left;
+        width: 33.33%; width: calc(100%/3);
+        margin-bottom: 20px;
+    }
+    #listen #listen-backing {
+        float: left;
+        width: 33.33%; width: calc(100%/3);
+        margin-bottom: 20px;
+    }
+
+    #listen #listen-original .inner {
+        padding: 0 20px;
+    }
+    #listen #listen-guide .inner {
+        padding-right: 20px;
+    }
+    #listen #listen-backing .inner {
+        padding-left: 20px;
+    }
+    #listen .embed-wrapper {
+        max-width: 300px;
+    }
+    .normal-width {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    strong {
+        font-weight: 600;
+    }
+
+    #lyrics {
+        margin-top: 60px;
+        margin-bottom: 100px;
+    }
+    #lyrics .song {
+        width: 50%;
+        font-size: 14px;
+        float: left;
+        margin-bottom: 40px;
+    }
+    #lyrics .song h3 {
+        font-size: 18px;
+        /*margin-bottom: 8px;*/
+    }
+    #lyrics .song p {
+        margin-bottom: 8px;
+    }
+
+    @media only screen and (max-width: 1060px) {
+        #lyrics .song {
+            float: none;
+            width: 100%;
+        }
+        #lyrics {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+    }
+
+    #site #canvas #page-wrapper article {
+        max-width: 1024px;
+    }
+</style>
+
 <div id="header-wrapper" class="nav-show-all">
     <div id="header">
         <div id="header-bg"></div>
@@ -20,12 +121,192 @@ title: Cinderella
         </div>
     </div>
 
-    <div id="nav-wrapper" class="anim">
-        {% include 2015-cinderella/nav.html %}
-    </div>
+    <!-- <div id="nav-wrapper" class="anim">
+        {% comment %} {% include 2015-cinderella/nav.html %} {% endcomment %}
+    </div> -->
 </div>
 <div id="page-wrapper">
-    {{ content }}
+    <h1 id="audition-date">Audtions September 10th</h1>
+    <p id="audition-location">Lowdham Village Hall</p>
+
+    <article>
+        <div class="normal-width">
+            <h2>Auditioning For A Singing Role?</h2>
+            <p>If your character is a singing role, you'll also be asked to sing a short version of your characters main song. Don't worry, we've prepaired examples for you so just follow the three steps bellow to <strong>get ready for your singing audiiton</strong>:</p>
+
+            <p style="text-align: center; font-size: 0.9em">( Lyrics are at the bottom of this page )</p>
+        </div>
+
+        <div id="listen" class="cf">
+            <div id="listen-guide">
+                <div class="inner">
+                    <div class="desc">
+                        <h3>1. Learn it using the guide track</h3>
+                        <p>Choose your character in this playlist and sing along to the piano melody:</p>
+                    </div>
+                    <div class="embed-wrapper">
+                        {% include 2015-cinderella/soundcloud-playlist.html playlist="49338312%3Fsecret_token%3Ds-EXKTg" height="380" %}
+                    </div>
+                </div>
+            </div>
+            <div id="listen-original">
+                <div class="inner">
+                    <div class="desc">
+                        <h3>2. Listen to the Original Song</h3>
+                        <p>If you you're unfamilar with the song, listen to the original on spotify:</p>
+                    </div>
+                    <div class="embed-wrapper">
+                        <iframe src="https://embed.spotify.com/?uri=spotify:user:marcuswhybrow:playlist:2OD96ir0ZRr1Y8hIvR7Nak" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div id="listen-backing">
+                <div class="inner">
+                    <div class="desc">
+                        <h3>3. Practice with the backing track</h3>
+                        <p>This is the track we'll use in the audition, get used to singing with it:</p>
+                    </div>
+                    <div class="embed-wrapper">
+                        {% include 2015-cinderella/soundcloud-playlist.html playlist="49338220%3Fsecret_token%3Ds-d4IxW" height="380" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="normal-width">
+            <h2>Song Lyrics</h2>
+            <p>Note that the lyrics below may differ slightly to the original because they are taken directly from our Cinderella script.</p>
+        </div>
+
+        <div id="lyrics" class="cf">
+            <div class="song">
+                <h3>Cinderella • Once Upon A Dream</h3>
+                <p>
+                    Once there was a time like no other time before, <br>
+                    Hope was still and open door, once upon a dream.
+                </p>
+                <p>
+                    And I was unafraid, the dream was so exciting! <br>
+                    But now I see it fade, and I am here alone!
+                </p>
+                <p>
+                    Once upon a dream, you were heaven-sent to me, <br>
+                    Was it never meant to be? Was it just a dream?
+                <p>
+                <p>
+                    Could we being again? Once upon a dream.
+                </p>
+            </div>
+
+            <div class="song">
+                <h3>Charming • Madness</h3>
+                <p>
+                    And now I need to know is this real love, <br>
+                    Or is it just madness keeping us afloat?
+                </p>
+                <p>
+                    But I have finally seen the light, <br>
+                    And I have finally realised...
+                </p>
+                <p>
+                    I need to love, <br>
+                    I need to love
+                <p>
+                <p>
+                    Come to me, just in a dream, come on and rescue me. <br>
+                    Yes I know, I can be wrong, maybe I'm to headstrong.
+                </p>
+            </div>
+
+            <div class="song">
+                <h3>Buttons • To Love Somebody</h3>
+                <p>
+                    There's a light, a certain kind of light, that never shone on me. <br>
+                    And I'd like my life to be, lived with her, lived with her.
+                </p>
+                <p>
+                    There's a way, everybody say, to do each and every little thing. <br>
+                    But what does it bring, if I ain't got her, if I ain't got her?
+                </p>
+                <p>
+                    Ohhoh you don't know what it's like, ohhoh you don't know what it's like <br>
+                    To love somebody, to love somebody, the way I love... her.
+                <p>
+            </div>
+
+            <div class="song">
+                <h3>Fairy • When You Believe</h3>
+                <p>
+                    Many nights you've prayed, with no proof anyone could hear, <br>
+                    In your heart a hopeful song you bearely understood. <br>
+                    But now you're not afraid, although you know there's much to fear, <br>
+                    You were moving mountains long before you knew you could.
+                </p>
+                <p>
+                    There can be miracles, when you believe, <br>
+                    Though hope is frail, it's hard to kill. <br>
+                    Who knows what miracles you can achieve, <br>
+                    When you believe somehow you will, you will when you believe.
+                </p>
+            </div>
+
+            <div class="song">
+                <h3>Baroness • Welcome Home</h3>
+                <p>
+                    You could've been all I wanted, <br>
+                    But you weren't honest, now get in the cellar!
+                </p>
+                <p>
+                    You choked off the surest of favors, <br>
+                    But if you really loved me, you would've endured my world.
+                </p>
+                <p>
+                    Hang on to the glory at my right hand, <br>
+                    Here laid to rest is our love ever longed, <br>
+                    With truth on the shores of compassion. <br>
+                    You seem to take premise to all of these...
+                </p>
+                <p>
+                    One last chance for you, one more wish to you, <br>
+                    Please make up your mind girl, I'd do anything for you <br>
+                    ...last chance for you, one more wish to you, <br>
+                    Please make up your mind girl, Before I hope you
+                </p>
+            </div>
+
+            <div class="song">
+                <h3>Hyacinth &amp; Lowercinth • Oh Boy</h3>
+                <p>
+                    All'a my love, all'a my kissin', <br>
+                    You don't know what you been a missin', oh boy!
+                </p>
+                <p>
+                    When you're with me, oh boy! <br>
+                    The world will see that you were meant for me!
+                </p>
+                <p>
+                    All'a my life I've been a'waitin', <br>
+                    Tonight there'll be no hesitatin', oh boy!
+                </p>
+                <p>
+                    When you're with me, oh boy! <br>
+                    The world will see that you were meant for me!
+                </p>
+                <p>
+                    Stars appear and the shadows a' fallin' <br>
+                    You can hear my heart a' callin' <br>
+                    A little bit o' lovin' makes everythin' right. <br>
+                    Am I gonna see my baby tonight?
+                </p>
+            </div>
+        </div>
+        <footer>
+            <div class="ask">
+                <p class="who">Questions? Ask <a href="mailto:marcus@pantohq.com">marcus@pantohq.com</a></p>
+                <p class="why">Writer &amp; Musical Director</p>
+            </div>
+        </footer>
+    </article>
 </div>
 <div id="footer-wrapper">
 

@@ -130,4 +130,19 @@ $ ->
 
 	pageSetUp()
 
+	$descriptions = $('#listen .desc')
+	$descriptions.resize ->
+		maxHeight = -1
+		height = -1
+
+		$descriptions.each ->
+			height = $(this).outerHeight()
+			maxHeight = if maxHeight > height then maxHeight else height
+
+		console.log maxHeight
+
+		$descriptions.each ->
+			$(this).height maxHeight
+	.resize()
+
 
