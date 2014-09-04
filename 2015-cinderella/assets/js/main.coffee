@@ -173,18 +173,18 @@ $ ->
 		ga('send', 'event', 'Audition Script', 'Select Character', capitalise(character));
 
 		$('html, body').animate
-			scrollTop: $('#lines-wrapper').offset().top - 40
+			scrollTop: $('#scripts').offset().top
 		, 200
 		false
 
 	$('#scroll-to-lines').click ->
 		$('html, body').animate
-			scrollTop: $('#lines-wrapper').offset().top - 40
+			scrollTop: $('#scripts').offset().top
 		, 200
 		false
 	$('#scroll-to-music').click ->
 		$('html, body').animate
-			scrollTop: $('#listen-wrapper').offset().top
+			scrollTop: $('#music').offset().top
 		, 200
 		false
 
