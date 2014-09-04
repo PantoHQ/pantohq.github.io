@@ -167,9 +167,7 @@ $ ->
 		$('html, body').animate
 			scrollTop: $('#lines-wrapper').offset().top - 40
 		, 200
-
 		false
-	$('#lines .lines-characters a[data-character="cinderella"]').click()
 
 	$('#scroll-to-lines').click ->
 		$('html, body').animate
