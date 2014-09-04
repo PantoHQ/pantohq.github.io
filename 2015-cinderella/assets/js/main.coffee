@@ -149,6 +149,9 @@ $ ->
 		$lines = $('.lines .line')
 		$lines.find('.highlightable').removeClass('highlight').filter('.character-' + character).addClass('highlight')
 
+	# Default highlighting
+	highlight 'cinderella'
+
 	# Enable line highlighting
 	# $('.lines .line .line-character > .wrapper ').click ->
 	# 	if not $(this).hasClass 'highlight'
