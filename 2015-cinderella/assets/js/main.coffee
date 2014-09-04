@@ -139,8 +139,6 @@ $ ->
 			height = $(this).outerHeight()
 			maxHeight = if maxHeight > height then maxHeight else height
 
-		console.log maxHeight
-
 		$descriptions.each ->
 			$(this).height maxHeight
 	.resize()
@@ -148,6 +146,9 @@ $ ->
 	highlight = (character) ->
 		$lines = $('.lines .line')
 		$lines.find('.highlightable').removeClass('highlight').filter('.character-' + character).addClass('highlight')
+
+	capitalise = (string) ->
+		string.charAt(0).toUpperCase() + string.slice(1)
 
 	# Default highlighting
 	highlight 'cinderella'
@@ -167,6 +168,10 @@ $ ->
 		$listItem.addClass('active')
 		$('#lines .lines-group').fadeOut(200).delay(200).filter('[data-character="' + character + '"]').fadeIn(200)
 		highlight character
+
+		# Track this characters selection in Google Analytics
+		ga('send', 'event', 'Audition Script', 'Select Character', capitalise(character));
+
 		$('html, body').animate
 			scrollTop: $('#lines-wrapper').offset().top - 40
 		, 200
