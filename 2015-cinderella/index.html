@@ -112,22 +112,24 @@ title: Cinderella
         padding: 0 20px;
     }
 
-    #listen-wrapper {
+    #music {
         background-color: #333;
         padding: 60px 0 1px;
         background-image: linear-gradient(#ddd, #aaa);
         border-top: 1px solid #ccc;
-        margin-bottom: 60px;
     }
-    #listen-wrapper p {
+    #music p {
         /*color: #ddd;*/
     }
-    #listen-wrapper h3 {
+    #music h3 {
         color: #000;
         font-weight: 400;
     }
-    #lines-wrapper .title,
-    #listen-wrapper .title {
+    #scripts {
+        padding-top: 60px;
+    }
+    #scripts .title,
+    #music .title {
         text-align: center;
         color: black;
         /*text-transform: uppercase;*/
@@ -137,7 +139,7 @@ title: Cinderella
         /*font-family: 'Montserrat', sans-serif;*/
         /*font-family: 'Shadows Into Light', cursive;*/
     }
-    #lines-wrapper .lines .title {
+    #scripts .lines .title {
         font-size: 50px;
         font-family: 'Shadows Into Light', cursive;
     }
@@ -191,17 +193,17 @@ title: Cinderella
         <div class="normal-width cf" style="margin-top: 80px; margin-bottom: 80px;">
             <div style="float: left; width: 50%">
                 <h2>Auditioning For A Main Part?</h2>
-                <p>View copies of the script excerpts you'll have to read in auditions by scrolling down to the <a id="scroll-to-lines" href="#lines-wrapper">Audition Scripts</a> section.</p>
+                <p>View copies of the script excerpts you'll have to read in auditions by scrolling down to the <a id="scroll-to-lines" href="#scripts">Audition Scripts</a> section.</p>
             </div>
             <div style="float: left; width: 50%">
                 <h2>Auditioning For A <span style="color: red">Singing</span> Role?</h2>
-                <p>If your character is a singing role, polish up on the audtion song for you character in the <a id="scroll-to-music" href="#listen-wrapper">Audition Music</a> section below:</p>
+                <p>If your character is a singing role, polish up on the audtion song for you character in the <a id="scroll-to-music" href="#music">Audition Music</a> section below:</p>
             </div>
         </div>
 
     </article>
 
-    <div id="listen-wrapper">
+    <div id="music">
         <h2 class="title">Auditon Music</h2>
 
         <article>
@@ -370,7 +372,7 @@ title: Cinderella
     </div>
     
 
-    <div id="lines-wrapper">
+    <div id="scripts">
         <h2 class="title">Audition Scripts</h2>
         <p style="text-align: center; position: relative; top: -40px">Choose your character below</p>
 
