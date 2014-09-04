@@ -181,18 +181,25 @@ $ ->
 		$('html, body').animate
 			scrollTop: $('#scripts').offset().top
 		, 200
+		ga('send', 'event', 'Call To Action', 'View Audition Scripts');
 		false
 	$('#scroll-to-music').click ->
 		$('html, body').animate
 			scrollTop: $('#music').offset().top
 		, 200
+		ga('send', 'event', 'Call To Action', 'View Audition Music');
 		false
 
 	$('#toggle-lyrics a').click ->
 		$lyrics = $('#lyrics')
 		$lyrics.toggle()
-		text = if $lyrics.is(':visible') then 'hide' else 'show'
+		isVisible = $lyrics.is(':visible')
+		text = if isVisible then 'hide' else 'show'
 		$(this).find('span').text(text)
+
+		eventLabel = if isVisible then 'To Show' else 'To Hide'
+		ga('send', 'event', 'Audition Music', 'Toggle Lyrics', eventLabel);
+
 		false
 
 
