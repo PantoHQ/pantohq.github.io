@@ -551,6 +551,123 @@ table th {
     }
 }
 
+#lines {
+    margin-bottom: 120px;
+
+    .lines-group {
+        display: none;
+    }
+
+    .lines-characters {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .lines-characters li {
+        display: inline-block;
+        padding: 4px 8px;
+    }
+    .lines-characters li.active {
+        border-bottom: 2px solid #666;
+    }
+}
+
+.lines {
+    font-family: "Courier New", Courier, monospace;
+
+    border: 2px solid #eee;
+    padding: 40px 0 20px;
+    margin-bottom: 60px;
+
+    @include box-shadow(0 0 50px #eee);
+
+    @include torn-paper(#fff, #eee);
+
+    .title {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .line,
+    .stage-direction {
+        margin: 0 40px 15px;
+    }
+
+    .line {
+        .line-character > .wrapper {
+            // cursor: pointer;
+        }
+
+        .highlightable.highlight {
+            background-color: yellow;
+        }
+
+        .line-character {
+            width: 20%;
+            display: block;
+            float: left;
+            text-transform: capitalize;
+
+            &:not(.empty)::after {
+                content: ':';
+            }
+        }
+        .line-character.empty {
+            height: 20px;
+        }
+
+
+        .line-text {
+            width: 80%;
+            display: block;
+            float: left;
+
+            .direction {
+                text-transform: uppercase;
+
+                &::before { content: '(' }
+                &::after  { content: ')' }
+            }
+        }
+    }
+
+    .stage-direction {
+        margin-left: 40%;
+        text-transform: uppercase;
+    }
+
+    .break {
+        // border-top: 1px solid #eee;
+        margin-top: 20px;
+        padding-bottom: 40px;
+
+        text-align: center;
+
+        span {
+            position: relative;
+            top: 38px;
+            padding: 0 20px;
+            font-family: 'Open Sans', sans-serif;
+            color: #888;
+            font-size: 14px;
+        }
+
+        @include torn-paper(#eee, #fff);
+    }
+    .break-close {
+        @include torn-paper(#fff, #eee);
+        display: block;
+        width: 100%;
+        height: 20px;
+        margin-bottom: 20px;
+    }
+}
+
 
 
 /*

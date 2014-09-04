@@ -1,0 +1,10 @@
+<div class="line cf" data-character="{{ include.character }}">
+	
+		{% if include.hideCharacter == "true" %}
+			<span class="line-character empty"></span>
+		{% else %}
+			<span class="line-character"><span class="wrapper highlightable character-{{ include.character }}" data-character="{{ include.character }}">{{ include.character }}</span>{% if include.character2 %}, <span class="wrapper highlightable character-{{ include.character2 }}" data-character="{{ include.character2 }}">{{ include.character2 }}</span>{% endif %}</span>{% endif %}
+	<span class="line-text">
+		<span class="wrapper highlightable character-{{ include.character }} {% if include.character2 %}character-{{ include.character2 }}{% endif %}">{{ include.line }}</span>
+	</span>
+</div>

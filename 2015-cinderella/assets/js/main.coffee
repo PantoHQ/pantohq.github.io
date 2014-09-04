@@ -145,4 +145,48 @@ $ ->
 			$(this).height maxHeight
 	.resize()
 
+	highlight = (character) ->
+		$lines = $('.lines .line')
+		$lines.find('.highlightable').removeClass('highlight').filter('.character-' + character).addClass('highlight')
+
+	# Enable line highlighting
+	# $('.lines .line .line-character > .wrapper ').click ->
+	# 	if not $(this).hasClass 'highlight'
+	# 		highlight $(this).data('character')
+	# 	else
+	# 		$('.lines .line').find('.highlightable').removeClass('highlight')
+
+	$('#lines .lines-characters a').click ->
+		$this = $(this)
+		$listItem = $this.closest('li')
+		character = $this.data('character')
+		$listItem.siblings('li').removeClass('active')
+		$listItem.addClass('active')
+		$('#lines .lines-group').fadeOut(200).delay(200).filter('[data-character="' + character + '"]').fadeIn(200)
+		highlight character
+		$('html, body').animate
+			scrollTop: $('#lines-wrapper').offset().top - 40
+		, 200
+
+		false
+	$('#lines .lines-characters a[data-character="cinderella"]').click()
+
+	$('#scroll-to-lines').click ->
+		$('html, body').animate
+			scrollTop: $('#lines-wrapper').offset().top - 40
+		, 200
+		false
+	$('#scroll-to-music').click ->
+		$('html, body').animate
+			scrollTop: $('#listen-wrapper').offset().top
+		, 200
+		false
+
+	$('#toggle-lyrics a').click ->
+		$lyrics = $('#lyrics')
+		$lyrics.toggle()
+		text = if $lyrics.is(':visible') then 'hide' else 'show'
+		$(this).find('span').text(text)
+		false
+
 

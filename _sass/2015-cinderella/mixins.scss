@@ -37,6 +37,18 @@
          -o-background-size: $size;
             background-size: $size;
 }
+@mixin border-radius($size) {
+    -webkit-border-radius: $size;
+       -moz-border-radius: $size;
+         -o-border-radius: $size;
+            border-radius: $size;
+}
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+       -moz-box-shadow: $shadow;
+         -o-box-shadow: $shadow;
+            box-shadow: $shadow;
+}
 @mixin keyframes($name) {
     @-webkit-keyframes #{$name} {
         @content
@@ -50,6 +62,14 @@
     @keyframes #{$name} {
         @content
     }
+}
+@mixin torn-paper($color, $color2) {
+    background: linear-gradient($color2 0%, transparent 0%), linear-gradient(135deg, $color 33.33%, transparent 33.33%) 0 0%, $color linear-gradient(45deg, $color 33.33%, $color2 33.33%) 0 0%;
+    background: -webkit-linear-gradient($color2 0%, transparent 0%), -webkit-linear-gradient(135deg, $color 33.33%, transparent 33.33%) 0 0%, $color -webkit-linear-gradient(45deg, $color 33.33%, $color2 33.33%) 0 0%;
+    background: -o-linear-gradient($color2 0%, transparent 0%), -o-linear-gradient(135deg, $color 33.33%, transparent 33.33%) 0 0%, $color -o-linear-gradient(45deg, $color 33.33%, $color2 33.33%) 0 0%;
+    background: -moz-linear-gradient($color2 0%, transparent 0%), -moz-linear-gradient(135deg, $color 33.33%, transparent 33.33%) 0 0%, $color -moz-linear-gradient(45deg, $color 33.33%, $color2 33.33%) 0 0%;
+    background-repeat: repeat-x;
+    background-size: 0px 100%, 9px 27px, 9px 27px;
 }
 @mixin transform($transform) {
     -webkit-transform: $transform;
