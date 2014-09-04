@@ -170,7 +170,7 @@ $ ->
 		highlight character
 
 		# Track this characters selection in Google Analytics
-		ga('send', 'event', 'Audition Script', 'Select Character', capitalise(character));
+		ga('send', 'event', 'Audition Scripts', 'Select Character', capitalise(character));
 
 		$('html, body').animate
 			scrollTop: $('#scripts').offset().top
