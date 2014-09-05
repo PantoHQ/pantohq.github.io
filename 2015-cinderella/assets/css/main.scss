@@ -661,6 +661,7 @@ table th {
         }
 
         @include torn-paper(#eee, #fff);
+        background-color: #eee;
     }
     .break-close {
         @include torn-paper(#fff, #eee);
@@ -668,6 +669,7 @@ table th {
         width: 100%;
         height: 20px;
         margin-bottom: 20px;
+        background-color: #eee;
     }
 }
 
