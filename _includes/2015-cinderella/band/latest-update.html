@@ -1,0 +1,66 @@
+<div class="rehearsal-progression">
+	<div class="timeline"></div>
+	<ul class="rehearsals">
+		<li class="rehearsal rehearsal-1 complete latest">
+			<div class="timeline-connector"></div>
+			<div class="complete number"><span>1</span></div>
+			<div class="latest-connector"></div>
+		</li>
+		<li class="rehearsal rehearsal-2">
+			<div class="timeline-connector"></div>	
+			<div class="number"><span>2</span></div>
+			<div class="latest-connector"></div>
+		</li>
+		<li class="rehearsal rehearsal-3">
+			<div class="timeline-connector"></div>	
+			<div class="number"><span>3</span></div>
+			<div class="latest-connector"></div>
+		</li>
+		<li class="rehearsal rehearsal-4">
+			<div class="timeline-connector"></div>	
+			<div class="number"><span>4</span></div>
+			<div class="latest-connector"></div>
+		</li>
+		<li class="rehearsal rehearsal-5">
+			<div class="timeline-connector"></div>	
+			<div class="number"><span>5</span></div>
+			<div class="latest-connector"></div>
+		</li>
+		<li class="rehearsal rehearsal-6">
+			<div class="timeline-connector"></div>	
+			<div class="number"><span>6</span></div>
+			<div class="latest-connector"></div>
+		</li>
+		<li class="rehearsal rehearsal-7">
+			<div class="timeline-connector"></div>	
+			<div class="number"><span>7</span></div>
+			<div class="latest-connector"></div>
+		</li>
+		<li class="rehearsal rehearsal-8">
+			<div class="timeline-connector"></div>	
+			<div class="number"><span>8</span></div>
+			<div class="latest-connector"></div>
+		</li>
+	</ul>
+</div>
+
+{% for post in site.posts limit:1 %}
+	<div id="latest-update">
+		<div class="inner">
+			<h2 class="title"><span>{{ post.title }}</span></h2>
+			<div>
+				{{ post.content }}
+			</div>
+		</div>
+	</div>
+
+	<div id="next-rehearsal">
+		<div class="inner">
+			<h2 class="title">Next Rehearsal</h2>
+			<p>
+				<span class="date">{% if post.nextRehearsalStart %}{% include 2015-cinderella/date.html post=post %}{% else %}<span class="none">To be arranged</span>{% endif %}</span><br>
+				{% if post.nextRehearsalLocation %}{{ post.nextRehearsalLocation }}{% endif %}
+			</p>
+		</div>
+	</div>
+{% endfor %}

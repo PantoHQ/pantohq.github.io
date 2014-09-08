@@ -1,0 +1,13 @@
+
+{% assign start = include.post.nextRehearsalStart %}
+{% assign end = include.post.nextRehearsalEnd %}
+{% assign day = start | date: "%-d" %}
+
+{{ start | date: "%a" }}
+{% case day %}
+	{% when '1' or '21' or '31' %}{{ day }}st
+	{% when '2' or '22' %}{{ day }}nd
+	{% when '3' or '23' %}{{ day }}rd
+	{% else %}{{ day }}th
+{% endcase %}
+{{ start | date: "%b %H:%M" }} - {{ end | date: "%H:%M" }}

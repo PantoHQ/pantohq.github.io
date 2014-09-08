@@ -209,6 +209,8 @@ table th {
                 width: auto;
                 text-align: center;
                 padding: 28px 0;
+                position: relative;
+                z-index: 1000;
 
                 ul {
                     font-size: 13px;
@@ -319,7 +321,7 @@ table th {
         }
 
         #page-wrapper {
-            padding: 0 20px 150px;
+            padding: 0 0 150px;
 
             .byline {
                 display: block;
@@ -335,8 +337,14 @@ table th {
             }
             article {
                 position: relative;
-                max-width: 750px;
+                max-width: 100%;
                 margin: 0 auto;
+
+                .body, footer {
+                    max-width: 750px;
+                    padding: 0 20px;
+                    margin: 0 auto;
+                }
 
                 header {
                     margin: 0 0 80px;
@@ -488,6 +496,227 @@ table th {
                 font-family: 'Shadows Into Light', cursive;
             }
 
+
+            .audio-resources.three-col {
+                .desc {
+                    margin-bottom: 40px;
+                }
+
+                .col-1, .col-2, .col-3 {
+                    float: left;
+                    width: 33.33%; width: calc(100%/3);
+                    margin-bottom: 20px;
+                }
+
+                .col-1 .inner { padding-right: 20px }
+                .col-2 .inner { padding: 0 20px }
+                .col-3 .inner { padding-left: 20px }
+                .embed-wrapper { max-width: 300px }
+            }
+
+            .big-title {
+                text-align: center;
+                color: black;
+                font-size: 100px;
+                font-family: 'Stalemate', cursive;
+                font-weight: normal;
+            }
+
+            $updateNormalTan: #ccca8e;
+            $updateMidTan: #afad47; // mid dark tan
+            $updateDarkTan: #49481F;
+
+            #latest-update {
+                max-width: 550px;
+                margin: 0 auto;
+                border: 1px solid $updateNormalTan;
+                border-color: $updateMidTan;
+                margin-bottom: 20px;
+                @include border-radius(3px);
+                @include box-shadow(0px 0px 70px #ddd);
+                @include torn-paper(#fff, $updateNormalTan); // Tan colour (matches header)
+                position: relative;
+                z-index: 10;
+
+                h2.title {
+                    color: $updateDarkTan; // dark tan
+                    font-family: 'Shadows Into Light', cursive;
+                    font-size: 24px;
+                }
+                ul, p {
+                    font-size: 13px;
+                    line-height: 17px;
+                    margin-bottom: 10px;
+                }
+
+                strong {
+                    font-weight: 600;
+                }
+
+                .inner {
+                    padding: 40px 40px 20px;
+                }
+
+                .practice {
+                    font-size: 13px;
+                    line-height: 13px;
+
+                    ul {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        margin-left: 10px;
+                        display: inline-block;
+
+                        li {
+                            display: inline-block;
+                            margin-right: 5px;
+                        }
+
+                        li:not(:last-child)::after {
+                            content: ", "
+                        }
+                    }
+                }
+            }
+
+            #next-rehearsal {
+                max-width: 550px;
+                margin: 0 auto;
+                @include border-radius(3px);
+                @include box-shadow(0px 0px 70px #ddd);
+                @include torn-paper(#fff, #eee);
+                border: 1px solid #ddd;
+                margin-bottom: 80px;
+
+                .inner {
+                    padding: 40px 40px 20px;
+
+                    .title {
+                        color: #333;
+                        font-family: 'Shadows Into Light', cursive;
+                        font-size: 24px;
+                    }
+
+                    p {
+                        font-size: 13px;
+                        line-height: 17px;
+                        margin-bottom: 10px;
+                    }
+
+                    .date {
+                        font-family: 'Montserrat', sans-serif;
+                        // text-transform: uppercase;
+                        font-weight: 700;
+                        font-size: 18px;
+
+                        .none {
+                            font-family: 'Open Sans', sans-serif;
+                            font-size: 13px;
+                            font-weight: normal;
+                            color: #aaa;
+                        }
+                    }
+                }
+            }
+
+            .rehearsal-progression {
+                position: relative;
+                z-index: 20;
+                max-width: 550px;
+                margin: 0 auto;
+
+                .timeline {
+                    background-color: #eee;
+                    width: 100%;
+                    height: 5px;
+                    position: absolute;
+                    top: 8px;
+                    @include border-radius(3px);
+                }
+
+                .rehearsals {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+
+                    .rehearsal {
+                        width: 21px;
+                        height: 21px;
+                        background-color: #eee;
+                        @include border-radius(50%);
+                        display: inline-block;
+                        margin: 0 4%;
+                        position: relative;
+
+                        .number {
+                            position: absolute;
+                            width: 15px;
+                            height: 15px;
+                            left: 2px;
+                            top: 2px;
+
+                            span {
+                                font-family: 'Montserrat', sans-serif;
+                                position: relative;
+                                top: -7px;
+                                left: 1px;
+                                font-size: 12px;
+                                color: #999;
+                            }
+                        }
+
+                        &.complete {
+                            .number {
+                                span {
+                                    color: $updateDarkTan;
+                                    left: 0;
+                                }
+                                background-color: $updateNormalTan; // tan
+                                @include border-radius(50%);
+                                border: 1px solid $updateMidTan;
+                            }
+                            &.latest {
+                                .latest-connector {
+                                    // display: none;
+                                    position: absolute;
+                                    width: 5px;
+                                    height: 13px;
+                                    border-left: 1px solid $updateMidTan;
+                                    border-right: 1px solid $updateMidTan;
+                                    background-color: #ccca8e;
+                                    left: 7px;
+                                    top: 17px;
+                                }
+                            }
+
+                            .timeline-connector {
+                                position: relative;
+                                width: 54px;
+                                height: 3px;
+                                left: -51px;
+                                top: 8px;
+                                background-color: $updateNormalTan;
+                                z-index: 30;
+                                border-top: 1px solid $updateMidTan;
+                                border-bottom: 1px solid $updateMidTan;
+                            }
+
+                            &.rehearsal-1 {
+                                .timeline-connector {
+                                    border-left: 1px solid $updateMidTan;
+                                    left: -23px;
+                                    width: 25px;
+                                    @include border-top-left-radius(3px);
+                                    @include border-bottom-left-radius(3px);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         // &.is-exiting {
@@ -517,12 +746,34 @@ table th {
         }
     }
 }
+@media only screen and (max-width: 610px) {
+    #site #canvas #page-wrapper .rehearsal-progression {
+        display: none;
+    }
+}
 @media only screen and (max-width: 960px) {
     #site {
         overflow: hidden;
         // padding: 50px;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    #site #canvas #page-wrapper .audio-resources.three-col {
+        .col-1, .col-2, .col-3 {
+            width: 100%;
+        }
+        .desc {
+            height: auto;
+        }
+        .col-1 .inner,
+        .col-2 .inner,
+        .col-3 .inner {
+            padding: 0;
+        }
+    }
+}
+
 @media only screen and (max-width: 40em) {
     #site #canvas #page-wrapper {
         padding: 0 20px 20px;
@@ -550,7 +801,6 @@ table th {
             margin-right: 5px;
             margin-bottom: 6px;
         }
-        
     }
 }
 
