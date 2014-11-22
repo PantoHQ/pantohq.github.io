@@ -157,6 +157,39 @@ title: Cinderella
     #cta-scripts p {
         padding-right: 20px;
     }
+
+    #pick {
+        font-family: 'Shadows Into Light', cursive;
+        font-size: 40px;
+        position: relative;
+        text-align: center;
+        margin: 0 auto;
+
+        z-index: 100;
+        left: 50px;
+        top: 100px;
+        width: 400px;
+    }
+
+    #cast-list {
+        text-align: right;
+        width: 100px;
+        margin: 0 auto;
+        position: relative;
+        right: 200px;
+
+        z-index: 1000;
+    }
+    #cast-list a:hover {
+        text-decoration: underline;
+    }
+    #cast-list .divider {
+        height: 20px;
+    }
+
+    #site #canvas #page-wrapper ul#cast-list {
+        list-style: none;
+    }
 </style>
 
 <div id="header-wrapper" class="nav-show-all">
@@ -173,12 +206,13 @@ title: Cinderella
             <!-- <p id="call-to-action">Welcome to the resource pack! Go invesitage:</p> -->
         </div>
     </div>
-
-    <div id="nav-wrapper" class="anim">
-        {% include 2015-cinderella/nav.html %}
-    </div>
 </div>
 <div id="page-wrapper">
+
+    <h2 id="pick">&larr; Pick your role</h2>
+    <ul id="cast-list">
+        {% include 2015-cinderella/cast-list.html %}
+    </ul>
 
     <!-- {% comment %} {% include 2015-cinderella/schedule.html %} {% endcomment %} -->
 

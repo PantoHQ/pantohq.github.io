@@ -53,6 +53,16 @@
         height: 0px;
     }
 }
+@include keyframes(exitingIntroGeneric) {
+    0% {
+        opacity: 1;
+        @include transform(none);
+    }
+    100% {
+        opacity: 0;
+        @include transform(translate3d(0,10px,0));
+    }
+}
 @include keyframes(exitingIntroNav) {
     20% {
         @include transform(none);
@@ -108,6 +118,16 @@
     }
     100% {
         opacity: 1;
+    }
+}
+@include keyframes(enteringIntroGeneric) {
+    0% {
+        opacity: 0;
+        @include transform(translate3d(0,10px,0));
+    }
+    100% {
+        opacity: 1;
+        @include transform(none);
     }
 }
 @include keyframes(enteringIntroNav) {
@@ -275,6 +295,13 @@
             }
         }
 
+        #page-wrapper {
+            #cast-list, #pick {
+                @include anim;
+                @include animation-name(exitingIntroGeneric);
+            }
+        }
+
         #header {
             #positioner {
                 @include anim;
@@ -305,6 +332,13 @@
         #footer-wrapper {
             @include anim;
             @include animation-name(enteringIntroContent);
+        }
+
+        #page-wrapper {
+            #cast-list, #pick {
+                @include anim;
+                @include animation-name(enteringIntroGeneric);
+            }
         }
 
         #header {
